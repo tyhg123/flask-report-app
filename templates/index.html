@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Báo cáo đơn hàng</title>
+</head>
+<body>
+    <h1>Tạo báo cáo đơn hàng</h1>
+    <form method="post">
+        <div>
+            <label>Sản phẩm:</label>
+            <input type="text" name="products[]" required>
+            <label>Số lượng:</label>
+            <input type="number" name="quantities[]" required>
+            <label>Giá (CNY):</label>
+            <input type="number" name="prices[]" required>
+        </div>
+        <button type="button" onclick="addProduct()">Thêm sản phẩm</button>
+        <div>
+            <label>Tỷ giá (VND/CNY):</label>
+            <input type="number" name="rate" step="0.01">
+        </div>
+        <button type="submit">Tạo báo cáo</button>
+    </form>
+    <div>
+        <h2>Kết quả:</h2>
+        <pre>{{ report }}</pre>
+        <p style="color: red;">{{ error }}</p>
+    </div>
+
+    <script>
+        function addProduct() {
+            const form = document.querySelector("form");
+            const div = document.createElement("div");
+            div.innerHTML = `
+                <label>Sản phẩm:</label>
+                <input type="text" name="products[]" required>
+                <label>Số lượng:</label>
+                <input type="number" name="quantities[]" required>
+                <label>Giá (CNY):</label>
+                <input type="number" name="prices[]" required>
+            `;
+            form.insertBefore(div, form.children[form.children.length - 2]);
+        }
+    </script>
+</body>
+</html>
